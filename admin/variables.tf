@@ -10,7 +10,7 @@ variable "org_id" {
 
 variable "location" {
   description = "Location of the project and it's GCS bucket"
-  default     = "US"
+  default     = "EU"
 }
 
 variable "parent_dns_name" {

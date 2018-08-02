@@ -14,11 +14,21 @@ resource "google_project_services" "this" {
   project = "${google_project.this.project_id}"
 
   services = [
+    "compute.googleapis.com",
+    "container.googleapis.com",
     "cloudbilling.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "dns.googleapis.com",
     "iam.googleapis.com",
     "serviceusage.googleapis.com",
     "storage-api.googleapis.com",
+    "oslogin.googleapis.com",
+    "bigquery-json.googleapis.com",
+    "containerregistry.googleapis.com",
+    "pubsub.googleapis.com",
+    "deploymentmanager.googleapis.com",
+    "replicapool.googleapis.com",
+    "replicapoolupdater.googleapis.com",
+    "resourceviews.googleapis.com",
   ]
 }
