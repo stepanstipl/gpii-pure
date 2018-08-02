@@ -15,7 +15,7 @@ variable "location" {
 
 variable "parent_dns_name" {
   description = "Parent DNS name for everything"
-  default     = "stgca01.stipl.net."
+  default     = "bananas.stipl.net."
 }
 
 variable "admin_members" {

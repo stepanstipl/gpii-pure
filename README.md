@@ -68,6 +68,8 @@ auth-gke                       Login to GKE
 
 `TF_VAR_project=root-1234 make docker-admin-apply`
 
+Individual projects are defined in `admin/projects.tf`.
+
 #### Init
 This step should be run manually and only once. It will bring the whole GCP
 organization under TF management.

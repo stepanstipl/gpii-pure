@@ -7,10 +7,10 @@ provider "random" {
   version = "= 1.3.1"
 }
 
-provider "helm" {
-  version         = "= 0.5.1"
-  service_account = "tiller"
-}
+#provider "helm" {
+#  version         = "= 0.5.1"
+#  service_account = "tiller"
+#}
 
 provider "null" {
   version = "= 1.0.0"

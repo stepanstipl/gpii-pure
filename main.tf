@@ -11,7 +11,7 @@ module "cluster" {
   project     = "${var.project}"
 }
 
-module "demo" {
-  source = "./modules/demo"
-  dep_on = ["${module.cluster.cluster_endpoint}", "${module.cluster.node_pool_node_count}"]
-}
+#module "demo" {
+#  source = "./modules/demo"
+#  dep_on = ["${module.cluster.cluster_endpoint}", "${module.cluster.node_pool_node_count}"]
+#}

@@ -5,7 +5,7 @@ SHELL = /bin/bash
 
 DOCKER_IMAGE = gpii-pure
 # Strip last part of project name dev-xyz-1234 -> dev-xyz
-export CLUSTER_NAME ?= $(shell echo $${TF_VAR_project%-*})
+export CLUSTER_NAME ?= $(shell VAR="$(TF_VAR_project)"; echo $${VAR%-*})
 export TF_VAR_region ?= europe-west2
 export TF_VAR_location ?= eu
 
@@ -34,7 +34,6 @@ admin-apply: auth         ## Apply admin - manage projects
 	$(call check_vars, TF_VAR_project)
 	terraform init -backend-config="bucket=$(TF_VAR_project)-infra" admin/
 	terraform apply -input=false -auto-approve admin/
-	gcloud projects list
 
 admin-plan: auth         ## Apply admin - manage projects 
 	echo CHECK NOW
@@ -57,10 +56,10 @@ test: test-lint           ## Runs all suite of tests
 test-lint:                ## Runs terraform fmt check
 	terraform fmt -check=true
 
-cluster-apply: auth auth-gke     ## Creates or updates cluster
+cluster-apply: auth       ## Creates or updates cluster
 	# Init terraform state
 	terraform init -backend-config="bucket=$(TF_VAR_project)-infra"
-	terraform apply -input=false -auto-approve
+	terraform apply -input=false -auto-approve -target=module.cluster
 
 cluster-plan: auth auth-gke     ## Creates or updates cluster
 	# Init terraform state
@@ -78,7 +77,7 @@ auth:                            ## Login to GCP
 
 auth-gke:                        ## Login to GKE
 	$(call check_vars, TF_VAR_project)
-	-gcloud container clusters get-credentials $(CLUSTER_NAME) --region $(TF_VAR_region) --project $(TF_VAR_project)
+	gcloud container clusters get-credentials $(CLUSTER_NAME) --region $(TF_VAR_region) --project $(TF_VAR_project) || true
 
 check_vars = \
 	  $(foreach var, $(1), $(if $(value $(strip $(var))),, $(error Variable $(var) is not set.)))

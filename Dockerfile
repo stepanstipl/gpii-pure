@@ -5,7 +5,8 @@ ENV TERRAFORM_VERSION=0.11.7 \
     HELM_VERSION=2.10.0-rc.2 \
     HELM_PROVIDER_VERSION=0.5.1 \
     GOOGLE_CLOUD_SDK_VERSION=210.0.0 \
-    PATH=${PATH}:/opt/bin:/opt/google-cloud-sdk/bin
+    PATH=${PATH}:/opt/bin:/opt/google-cloud-sdk/bin \
+    CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE=/root/.config/gcloud/application_default_credentials.json
 
 RUN apk --update --no-cache add \
         bash \
