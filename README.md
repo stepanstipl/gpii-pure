@@ -102,3 +102,4 @@ organization under TF management.
 - Enable pod secrity policy
 - Possibly more services than we need for root project
 - admin-destroy - fails obviously as the bucket is gone
+- add info and example how to develop (mount volume in the container)
